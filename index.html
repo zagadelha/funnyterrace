@@ -1,0 +1,725 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Funny Terrace | AI product and engineering studio in Porto</title>
+<meta name="description" content="Funny Terrace is a product and engineering studio in Porto. We turn AI pilots into production software: AI product strategy, AI-native engineering, legacy modernisation and fintech platforms.">
+<link rel="canonical" href="https://funnyterrace.com/">
+<link rel="alternate" hreflang="en" href="https://funnyterrace.com/">
+<link rel="alternate" hreflang="pt-PT" href="https://funnyterrace.com/">
+<meta name="theme-color" content="#070A18" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#070A18" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Funny Terrace">
+<meta property="og:title" content="Funny Terrace | AI products, built to reach production">
+<meta property="og:description" content="Product and engineering studio in Porto. AI strategy, AI-native engineering, modernisation and fintech platforms.">
+<meta property="og:url" content="https://funnyterrace.com/">
+<meta property="og:image" content="https://funnyterrace.com/og-image.png">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="pt_PT">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Crect width='28' height='28' rx='6' fill='%23070A18'/%3E%3Cpath d='M5 8h9M9 14h10M13 20h10' stroke='white' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<!-- For production anti-spam, consider Cloudflare Turnstile on the contact form. -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"Funny Terrace","url":"https://funnyterrace.com", "description":"AI product and engineering studio in Porto, Portugal.",
+ "address":{"@type":"PostalAddress","addressLocality":"Porto","addressCountry":"PT"},
+ "founder":{"@type":"Person","name":"Marcio Gadelha","jobTitle":"Head of Product and Engineering","sameAs":"https://www.linkedin.com/in/marciogadelha"},
+ "knowsAbout":["Artificial intelligence","Product management","LLM applications","Legacy modernisation","Capital markets software"]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300..800&family=Geist:wght@300..700&display=swap">
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#070A18; --bg-2:#0A0F22; --surface:#0E1429; --line:#1C2547; --line-2:#2B3666;
+  --ink:#EAF0FF; --soft:#C6CFEA; --muted:#8E99BC; --signal:#6A86FF; --accent:#FFB547; --accent-hover:#FFC978; --accent-ink:#1B1102;
+  --display:"Unbounded", "Arial Black", Arial, sans-serif;
+  --text:"Geist", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --gutter:clamp(16px, 4vw, 56px); --max:1240px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--bg)}
+body{background:var(--bg);color:var(--ink);font-family:var(--text);font-size:16.5px;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.wrap{max-width:var(--max);margin-inline:auto;padding-inline:var(--gutter)}
+h1,h2,h3{font-family:var(--display);font-weight:500;line-height:1.08;letter-spacing:-0.03em;text-wrap:balance;margin:0}
+h2{font-size:clamp(1.75rem, 3.6vw, 2.8rem)}
+h3{font-size:1.0625rem;letter-spacing:-0.01em;line-height:1.3}
+p{margin:0}
+.lede{font-size:1.0625rem;color:var(--muted);max-width:60ch}
+
+.site-header{position:sticky;top:env(safe-area-inset-top, 0px);z-index:20;background:rgba(7,10,24,.72);backdrop-filter:blur(14px) saturate(1.3);-webkit-backdrop-filter:blur(14px) saturate(1.3);border-bottom:1px solid var(--line)}
+.site-header .wrap{display:flex;align-items:center;gap:24px;min-height:68px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--display);font-weight:600;font-size:0.95rem;letter-spacing:-0.02em}
+.brand svg{width:26px;height:20px;color:var(--accent)}
+.nav{display:flex;gap:26px;margin-left:auto}
+.nav a{text-decoration:none;font-size:0.9rem;color:var(--muted);transition:color .15s}
+.nav a:hover{color:var(--ink)}
+.header-actions{display:flex;align-items:center;gap:12px}
+.lang{display:flex;border:1px solid var(--line-2);border-radius:8px;padding:2px}
+.lang button{font:inherit;font-size:0.78rem;font-weight:600;background:none;border:0;color:var(--muted);padding:4px 10px;border-radius:6px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:inherit;font-weight:600;font-size:0.9375rem;text-decoration:none;border-radius:10px;padding:12px 20px;border:1px solid transparent;cursor:pointer;transition:background-color .15s, border-color .15s, color .15s, box-shadow .15s}
+.btn-primary{background:var(--accent);color:var(--accent-ink);box-shadow:0 10px 32px -10px rgba(255,181,71,.6)}
+.btn-primary:hover{background:var(--accent-hover);box-shadow:0 12px 40px -8px rgba(255,181,71,.75)}
+.btn-ghost,.btn-light{border-color:var(--line-2);color:var(--ink);background:rgba(106,134,255,.04)}
+.btn-ghost:hover,.btn-light:hover{border-color:var(--signal);background:rgba(106,134,255,.12)}
+.btn-sm{padding:8px 15px;font-size:0.85rem}
+@media (max-width:860px){.nav{display:none}.header-actions{margin-left:auto}}
+@media (max-width:420px){.header-actions .btn-sm{display:none}}
+
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line);background:radial-gradient(52% 72% at 74% 50%, rgba(106,134,255,.2), transparent 70%),radial-gradient(26% 34% at 80% 64%, rgba(255,181,71,.08), transparent 70%),var(--bg)}
+.hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(142,153,188,.22) 1px, transparent 1.2px);background-size:28px 28px;-webkit-mask-image:linear-gradient(180deg, transparent, #000 30%, #000 70%, transparent);mask-image:linear-gradient(180deg, transparent, #000 30%, #000 70%, transparent);opacity:.35;pointer-events:none}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hero-veil{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg, var(--bg) 0%, rgba(7,10,24,.8) 30%, transparent 56%)}
+@media (max-width:760px){.hero-veil{background:linear-gradient(180deg, rgba(7,10,24,.9) 0%, rgba(7,10,24,.6) 55%, transparent 100%)}}
+.hero-inner{position:relative;padding-block:clamp(96px, 13vw, 184px) clamp(64px, 9vw, 120px)}
+.hero h1{font-size:clamp(1.9rem, 6.2vw, 5.1rem);font-weight:600;letter-spacing:-0.05em;line-height:1.02;margin-bottom:32px}
+.hero h1 .step{display:block;animation:rise .9s cubic-bezier(.2,.7,.1,1) both}
+.hero h1 .step:nth-child(2){animation-delay:.1s}
+.hero h1 .step:nth-child(3){animation-delay:.2s}
+@keyframes rise{from{transform:translateY(.4em);opacity:0;filter:blur(10px)}to{transform:none;opacity:1;filter:none}}
+@media (prefers-reduced-motion: reduce){.hero h1 .step{animation:none}}
+.hero .lede{font-size:clamp(1.03rem, 1.5vw, 1.2rem);color:var(--soft);max-width:52ch;margin-bottom:32px}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:56px}
+.creds{display:flex;flex-wrap:wrap;gap:14px 44px;list-style:none;margin:0;padding:20px 0 0;border-top:1px solid var(--line-2);max-width:760px}
+.creds li{font-size:0.875rem;color:var(--muted)}
+.creds strong{display:block;font-family:var(--display);font-weight:500;font-size:1.05rem;color:var(--accent);letter-spacing:-0.02em;font-variant-numeric:tabular-nums;margin-bottom:2px}
+
+section{scroll-margin-top:80px}
+.section{padding-block:clamp(80px, 10vw, 136px)}
+.section-head{display:grid;gap:16px;margin-bottom:56px;max-width:760px}
+
+.services{display:grid;grid-template-columns:repeat(2, minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.service{background:var(--bg-2);padding:36px 32px;display:grid;gap:14px;align-content:start;transition:background-color .2s}
+.service:hover{background:var(--surface)}
+.service p{color:var(--muted);max-width:52ch}
+.tags{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:6px 0 0;padding:0}
+.tags li{font-size:0.78rem;font-weight:500;padding:4px 10px;border-radius:6px;border:1px solid var(--line-2);color:var(--soft)}
+@media (max-width:760px){.services{grid-template-columns:1fr}.service{padding:28px 22px}}
+
+.work-band{background:var(--bg-2);border-block:1px solid var(--line)}
+.feature{display:grid;grid-template-columns:1.1fr 0.9fr;gap:48px;align-items:end;padding-bottom:48px;border-bottom:1px solid var(--line)}
+.feature .kicker,.case .kicker{font-size:0.8125rem;color:var(--signal);margin-bottom:10px;letter-spacing:.01em}
+.feature h3{font-size:clamp(1.4rem, 2.7vw, 2.1rem);margin-bottom:16px;line-height:1.15}
+.feature p{color:var(--muted);max-width:56ch}
+.feature a.link{display:inline-block;margin-top:18px;font-weight:600;color:var(--accent);text-underline-offset:4px}
+.big{font-family:var(--display);font-weight:600;font-size:clamp(3.5rem, 9vw, 7.25rem);line-height:.9;letter-spacing:-0.05em;color:transparent;-webkit-text-stroke:1.5px var(--accent);text-shadow:0 0 40px rgba(255,181,71,.25)}
+.big-label{margin-top:16px;color:var(--muted);font-size:0.9375rem;max-width:32ch}
+.cases{display:grid;grid-template-columns:repeat(3, minmax(0,1fr));gap:0 40px}
+.case{padding-top:36px;display:grid;gap:12px;align-content:start}
+.case p{color:var(--muted);font-size:0.95rem}
+.metrics{display:grid;gap:10px;margin:8px 0 0;padding:16px 0 0;border-top:1px solid var(--line)}
+.metrics div{display:flex;align-items:baseline;gap:12px}
+.metrics dt{font-family:var(--display);font-weight:500;font-size:1.3rem;line-height:1;min-width:5ch;letter-spacing:-0.03em;font-variant-numeric:tabular-nums}
+.metrics dd{margin:0;color:var(--muted);font-size:0.9rem}
+@media (max-width:900px){.feature{grid-template-columns:1fr;gap:28px}.cases{grid-template-columns:1fr}}
+
+.terraces{display:grid;grid-template-columns:repeat(4, minmax(0,1fr));gap:24px;list-style:none;margin:0;padding:0;counter-reset:step}
+.terraces li{counter-increment:step;position:relative;border-top:1px solid var(--line-2);padding-top:26px;display:grid;gap:10px;align-content:start}
+.terraces li::before{content:"";position:absolute;top:-6px;left:0;width:11px;height:11px;border-radius:50%;background:var(--bg);border:2px solid var(--signal)}
+.terraces li:last-child::before{background:var(--accent);border-color:var(--accent);box-shadow:0 0 16px rgba(255,181,71,.7)}
+.terraces .num::before{content:counter(step, decimal-leading-zero)}
+.terraces .num{font-family:var(--display);font-weight:500;color:var(--signal);font-size:0.85rem}
+.terraces .dur{font-size:0.8125rem;color:var(--accent)}
+.terraces p{color:var(--muted);font-size:0.95rem}
+@media (max-width:900px){
+  .terraces{grid-template-columns:1fr;gap:0}
+  .terraces li{border-top:0;border-left:1px solid var(--line-2);padding:0 0 32px 26px}
+  .terraces li::before{top:2px;left:-6px}
+  .terraces li:last-child{padding-bottom:0}
+}
+
+.founder{display:grid;grid-template-columns:0.85fr 1.15fr;gap:64px;align-items:start}
+.founder-copy{display:grid;gap:20px}
+.founder-copy p{max-width:62ch;color:var(--muted)}
+.founder-copy .lede{color:var(--ink)!important}
+.facts{list-style:none;margin:8px 0 0;padding:0;display:grid}
+.facts li{display:grid;grid-template-columns:9rem 1fr;gap:16px;padding-block:12px;border-top:1px solid var(--line);font-size:0.9375rem}
+.facts li span:first-child{color:var(--muted)}
+.facts a{color:var(--accent);text-underline-offset:3px}
+@media (max-width:900px){.founder{grid-template-columns:1fr;gap:36px}}
+@media (max-width:460px){.facts li{grid-template-columns:1fr;gap:2px}}
+.timeline-scroll{overflow-x:auto;margin-top:64px;padding-bottom:8px}
+.timeline{display:grid;grid-template-columns:repeat(8, minmax(120px,1fr));min-width:960px;list-style:none;margin:0;padding:0;position:relative}
+.timeline::before{content:"";position:absolute;left:0;right:0;top:9px;height:1px;background:linear-gradient(90deg, var(--line-2), var(--signal) 70%, var(--accent))}
+.timeline li{position:relative;padding-top:30px;padding-right:12px}
+.timeline li::before{content:"";position:absolute;top:4px;left:0;width:11px;height:11px;border-radius:50%;background:var(--bg-2);border:2px solid var(--signal)}
+.timeline li.now::before{background:var(--accent);border-color:var(--accent);box-shadow:0 0 14px rgba(255,181,71,.7)}
+.timeline .yr{font-family:var(--display);font-weight:500;font-size:0.95rem;letter-spacing:-0.02em;font-variant-numeric:tabular-nums}
+.timeline .org{font-size:0.9375rem}
+.timeline .role{font-size:0.8125rem;color:var(--muted)}
+.shipped{margin-top:56px;display:flex;flex-wrap:wrap;align-items:baseline;gap:10px 30px}
+.shipped p{color:var(--muted);font-size:0.9rem;flex-basis:100%}
+.shipped span{font-family:var(--display);font-weight:500;font-size:clamp(1rem, 2vw, 1.4rem);letter-spacing:-0.03em;color:#7C88B0}
+
+.contact-band{background:radial-gradient(60% 80% at 12% 15%, rgba(106,134,255,.16), transparent 70%),var(--bg);border-top:1px solid var(--line)}
+.contact-band .lede,.contact-band label,.contact-band .note{color:var(--muted)}
+.contact{display:grid;grid-template-columns:0.9fr 1.1fr;gap:64px}
+.contact-side{display:grid;gap:22px;align-content:start}
+.mail{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:8px}
+.mail code{font-family:var(--display);font-size:clamp(1.05rem, 2.2vw, 1.4rem);font-weight:500;letter-spacing:-0.02em;user-select:all;word-break:break-all;color:var(--ink)}
+.verify{display:grid;gap:10px;justify-items:start}
+.hold{position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:10px;font:inherit;font-weight:600;font-size:0.9375rem;color:var(--ink);background:rgba(106,134,255,.05);border:1px solid var(--line-2);border-radius:10px;padding:12px 20px;cursor:pointer;user-select:none;-webkit-user-select:none;touch-action:none;--p:0}
+.hold::before{content:"";position:absolute;inset:0;background:var(--accent);transform-origin:left center;transform:scaleX(var(--p));z-index:0}
+.hold > *{position:relative;z-index:1}
+.hold.active,.hold.done{color:var(--accent-ink);border-color:var(--accent)}
+.hold svg{width:18px;height:18px}
+.hold[disabled]{cursor:progress}
+.hp{position:absolute!important;left:-9999px;width:1px;height:1px;opacity:0}
+form{display:grid;gap:16px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:560px){.row{grid-template-columns:1fr}}
+label{display:grid;gap:6px;font-size:0.85rem;font-weight:500}
+input,select,textarea{font:inherit;font-size:1rem;color:var(--ink);background:var(--surface);border:1px solid var(--line-2);border-radius:10px;padding:12px 14px;width:100%}
+select option{color:var(--ink);background:var(--surface)}
+textarea{min-height:130px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--signal);outline-offset:1px;border-color:transparent}
+.contact-band .btn-primary{justify-self:start}
+.result{border:1px solid var(--line-2);background:var(--surface);border-radius:12px;padding:18px;display:grid;gap:12px}
+.result pre{margin:0;white-space:pre-wrap;font-family:var(--text);font-size:0.9375rem;color:var(--ink)}
+.result-actions{display:flex;flex-wrap:wrap;gap:10px}
+.note{font-size:0.8125rem}
+.error{color:var(--accent);font-size:0.875rem}
+@media (max-width:900px){.contact{grid-template-columns:1fr;gap:40px}}
+
+footer{padding-block:32px;border-top:1px solid var(--line);font-size:0.875rem;color:var(--muted)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+footer a{color:var(--muted)}
+</style>
+<style>html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Funny Terrace">
+      <svg viewBox="0 0 28 22" fill="none" aria-hidden="true"><path d="M1 3h12M7 11h13M14 19h13" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
+      Funny Terrace
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="#services" data-i18n="nav.services">Services</a>
+      <a href="#work" data-i18n="nav.work">Work</a>
+      <a href="#process" data-i18n="nav.process">Process</a>
+      <a href="#founder" data-i18n="nav.founder">Founder</a>
+      <a href="#contact" data-i18n="nav.contact">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" id="lang-en" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" id="lang-pt" data-lang="pt" aria-pressed="false">PT</button>
+      </div>
+      <a class="btn btn-primary btn-sm" href="#contact" data-i18n="cta.call">Book a call</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" aria-labelledby="hero-title">
+    <canvas id="terrace" aria-hidden="true"></canvas>
+    <div class="hero-veil" aria-hidden="true"></div>
+    <div class="wrap hero-inner">
+      <h1 id="hero-title">
+        <span class="step" data-i18n="hero.l1">AI products,</span>
+        <span class="step" data-i18n="hero.l2">built to reach</span>
+        <span class="step" data-i18n="hero.l3">production.</span>
+      </h1>
+      <p class="lede" data-i18n="hero.sub">Funny Terrace is a product and engineering studio in Porto. We help companies turn AI from a pilot into software people use every day, with the discipline of a team that has shipped trading, clearing and banking systems.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#contact" data-i18n="hero.cta1">Book a 30-minute call</a>
+        <a class="btn btn-ghost" href="#work" data-i18n="hero.cta2">See our work</a>
+      </div>
+      <ul class="creds">
+        <li><strong data-i18n="cred.1v">24 years</strong><span data-i18n="cred.1l">shipping software</span></li>
+        <li><strong>&lt;50 ms</strong><span data-i18n="cred.2l">order execution on Euronext Optiq</span></li>
+        <li><strong data-i18n="cred.3v">6 months</strong><span data-i18n="cred.3l">from kickoff to MVP</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="services" aria-labelledby="services-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="services-title" data-i18n="svc.title">Four ways we work with you</h2>
+        <p class="lede" data-i18n="svc.lede">Strategy and engineering sit in the same team, so what we recommend is what we can build and run.</p>
+      </div>
+      <div class="services">
+        <article class="service">
+          <h3 data-i18n="svc.1t">AI product strategy</h3>
+          <p data-i18n="svc.1p">Find the use cases that pay back. We run discovery with your users and your data, size the opportunity, and write a roadmap your team can execute.</p>
+          <ul class="tags"><li data-i18n="svc.1a">Opportunity mapping</li><li data-i18n="svc.1b">Build or buy decisions</li><li data-i18n="svc.1c">Roadmaps and success metrics</li></ul>
+        </article>
+        <article class="service">
+          <h3 data-i18n="svc.2t">AI-native engineering</h3>
+          <p data-i18n="svc.2p">Agents, LLM features and retrieval built into your product, with evaluation, guardrails and cost control from the first sprint.</p>
+          <ul class="tags"><li data-i18n="svc.2a">Claude and other LLM APIs</li><li data-i18n="svc.2b">Agents and tool use</li><li data-i18n="svc.2c">Evals and observability</li></ul>
+        </article>
+        <article class="service">
+          <h3 data-i18n="svc.3t">Modernisation with AI</h3>
+          <p data-i18n="svc.3p">Move legacy systems to a modern stack without stopping the business. AI agents help us read, test and migrate code, and people approve every change.</p>
+          <ul class="tags"><li data-i18n="svc.3a">Low-code to custom stack</li><li data-i18n="svc.3b">Java and monolith migration</li><li data-i18n="svc.3c">Automated test coverage</li></ul>
+        </article>
+        <article class="service">
+          <h3 data-i18n="svc.4t">Fintech and capital markets</h3>
+          <p data-i18n="svc.4p">Platforms for trading, clearing and portfolio management, designed around exchange rules and regulation from day one.</p>
+          <ul class="tags"><li>Euronext Optiq · FIX 5.0</li><li>MiFID II · EMIR</li><li data-i18n="svc.4c">B3 options</li></ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section work-band" id="work" aria-labelledby="work-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="work-title" data-i18n="work.title">Selected work</h2>
+        <p class="lede" data-i18n="work.lede">Products we have designed, built and put in front of real users.</p>
+      </div>
+
+      <article class="feature">
+        <div>
+          <p class="kicker" data-i18n="w1.k">OptFlow · SaaS for B3 options traders</p>
+          <h3 data-i18n="w1.t">From a low-code MVP to a production fintech SaaS</h3>
+          <p data-i18n="w1.p">We own product, architecture and go-to-market. The stack moved to React and Supabase, with broker-statement imports and FIFO reconciliation, real-time market data, role-based access, and Stripe billing with card, Pix and trials. AI agents are part of the daily engineering workflow.</p>
+          <a class="link" href="https://optflow.app" target="_blank" rel="noopener">optflow.app</a>
+        </div>
+        <div>
+          <div class="big">0→1</div>
+          <p class="big-label" data-i18n="w1.b">Product vision, calculation engine, payments and launch, built by one team.</p>
+        </div>
+      </article>
+
+      <div class="cases">
+        <article class="case">
+          <p class="kicker" data-i18n="w2.k">Derivatives · Euronext</p>
+          <h3 data-i18n="w2.t">Options launch platform</h3>
+          <p data-i18n="w2.p">An enterprise platform to launch and manage options, on microservices connected to Optiq's FIX 5.0 gateway, with AI-suggested trade templates and synced web and mobile apps.</p>
+          <dl class="metrics">
+            <div><dt>&lt;50ms</dt><dd data-i18n="w2.m1">order execution</dd></div>
+            <div><dt>−50%</dt><dd data-i18n="w2.m2">time to launch an operation</dd></div>
+            <div><dt>+40%</dt><dd data-i18n="w2.m3">faster than the legacy system</dd></div>
+          </dl>
+        </article>
+        <article class="case">
+          <p class="kicker" data-i18n="w3.k">Clearing · Investment bank</p>
+          <h3 data-i18n="w3.t">Legacy clearing, connected to the cloud</h3>
+          <p data-i18n="w3.p">An integration layer in Java, Spring Boot and JMS between a derivatives clearing system and a new cloud platform, tuned for high transaction volumes.</p>
+          <dl class="metrics">
+            <div><dt>~50%</dt><dd data-i18n="w3.m1">of the system's features delivered</dd></div>
+            <div><dt data-i18n="w3.m2v">Lower</dt><dd data-i18n="w3.m2">response times at scale</dd></div>
+          </dl>
+        </article>
+        <article class="case">
+          <p class="kicker" data-i18n="w4.k">Logistics · Real time</p>
+          <h3 data-i18n="w4.t">Fleet tracking</h3>
+          <p data-i18n="w4.p">Real-time truck tracking and automated reporting for a logistics operator, from product definition to delivery.</p>
+          <dl class="metrics">
+            <div><dt>−40%</dt><dd data-i18n="w4.m1">cargo theft</dd></div>
+            <div><dt>−50%</dt><dd data-i18n="w4.m2">report generation time</dd></div>
+          </dl>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="process" aria-labelledby="process-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="process-title" data-i18n="pr.title">How an engagement runs</h2>
+        <p class="lede" data-i18n="pr.lede">Each stage ends with something you can decide on. You can stop after any of them and keep what was built.</p>
+      </div>
+      <ol class="terraces">
+        <li><span class="num"></span><h3 data-i18n="pr.1t">Discover</h3><span class="dur" data-i18n="pr.1d">2 weeks</span><p data-i18n="pr.1p">Interviews, a data review and a clear problem statement. You get a ranked list of AI opportunities and their expected value.</p></li>
+        <li><span class="num"></span><h3 data-i18n="pr.2t">Prove</h3><span class="dur" data-i18n="pr.2d">4 to 6 weeks</span><p data-i18n="pr.2p">A working proof of concept on your real data, with evaluation results, so the go or no-go decision rests on evidence.</p></li>
+        <li><span class="num"></span><h3 data-i18n="pr.3t">Build</h3><span class="dur" data-i18n="pr.3d">3 to 6 months</span><p data-i18n="pr.3p">Production engineering in short cycles: architecture, security, integrations and a release every two weeks.</p></li>
+        <li><span class="num"></span><h3 data-i18n="pr.4t">Run</h3><span class="dur" data-i18n="pr.4d">Ongoing</span><p data-i18n="pr.4p">Monitoring, model and prompt evaluation, cost tracking, and a handover your own team can own.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section work-band" id="founder" aria-labelledby="founder-title">
+    <div class="wrap">
+      <div class="founder">
+        <div class="section-head" style="margin-bottom:0">
+          <h2 id="founder-title" data-i18n="f.title">Led by Marcio Gadelha</h2>
+        </div>
+        <div class="founder-copy">
+          <p class="lede" data-i18n="f.p1">Marcio has built software since 2002, as an engineer, software architect, tech lead and product manager, for companies such as AB InBev, IBM, Caixa, Multiplan and Natixis.</p>
+          <p data-i18n="f.p2">He leads product and engineering at Funny Terrace and founded OptFlow. He taught software development at SENAC for five years, which is why clients get trade-offs explained in plain language.</p>
+          <ul class="facts">
+            <li><span data-i18n="f.k1">Education</span><span data-i18n="f.v1">MBA in Distributed Software Architecture, PUC Minas</span></li>
+            <li><span data-i18n="f.k2">Languages</span><span data-i18n="f.v2">Portuguese, English, Spanish</span></li>
+            <li><span data-i18n="f.k3">Based in</span><span data-i18n="f.v3">Porto, working with clients in Europe and Brazil</span></li>
+            <li><span>LinkedIn</span><span><a href="https://www.linkedin.com/in/marciogadelha" target="_blank" rel="noopener">linkedin.com/in/marciogadelha</a></span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-scroll" tabindex="0" aria-label="Career timeline">
+        <ol class="timeline">
+          <li><div class="yr">2002</div><div class="org">AB InBev</div><div class="role" data-i18n="t.1">Systems coordinator</div></li>
+          <li><div class="yr">2009</div><div class="org">IBM</div><div class="role" data-i18n="t.2">Senior tech lead</div></li>
+          <li><div class="yr">2014</div><div class="org">Tecgraf / PUC-Rio</div><div class="role" data-i18n="t.3">Senior engineer</div></li>
+          <li><div class="yr">2016</div><div class="org">Multiplan</div><div class="role" data-i18n="t.4">Software architect</div></li>
+          <li><div class="yr">2021</div><div class="org">Caixa</div><div class="role" data-i18n="t.5">Senior engineer</div></li>
+          <li><div class="yr">2023</div><div class="org">Natixis</div><div class="role" data-i18n="t.6">Architect, tech lead</div></li>
+          <li><div class="yr">2025</div><div class="org">Funny Terrace</div><div class="role" data-i18n="t.7">Technical product manager</div></li>
+          <li class="now"><div class="yr">2026</div><div class="org">OptFlow</div><div class="role" data-i18n="t.8">Founder</div></li>
+        </ol>
+      </div>
+
+      <div class="shipped">
+        <p data-i18n="f.shipped">Where our team has shipped software</p>
+        <span>Natixis</span><span>Caixa</span><span>IBM</span><span>AB InBev</span><span>Multiplan</span><span>Bradesco Seguros</span><span>ANP</span><span>SENAC</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section contact-band" id="contact" aria-labelledby="contact-title">
+    <div class="wrap contact">
+      <div class="contact-side">
+        <h2 id="contact-title" data-i18n="c.title">Tell us what you want to build</h2>
+        <p class="lede" data-i18n="c.lede">A few lines about the product, the problem and your timeline are enough. We reply within two business days.</p>
+        <div class="verify" id="verify">
+          <button class="hold" type="button" id="hold-btn" aria-describedby="verify-hint">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16v10H4z M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+            <span id="hold-label" data-i18n="v.hold">Hold to show our email</span>
+          </button>
+          <p class="note" id="verify-hint" data-i18n="v.hint">Press and hold for a second to confirm you are a person. This keeps our inbox free of spam bots.</p>
+          <label class="hp" aria-hidden="true">Website<input id="f-website" name="website" tabindex="-1" autocomplete="off"></label>
+        </div>
+        <div class="mail" id="mail" hidden>
+          <code id="email"></code>
+          <button class="btn btn-light btn-sm" type="button" id="copy-email" data-i18n="c.copy">Copy email</button>
+        </div>
+      </div>
+
+      <form id="contact-form" novalidate>
+        <div class="row">
+          <label for="f-name"><span data-i18n="c.name">Name</span><input id="f-name" name="name" autocomplete="name" required></label>
+          <label for="f-email"><span data-i18n="c.email">Work email</span><input id="f-email" name="email" type="email" autocomplete="email" required></label>
+        </div>
+        <div class="row">
+          <label for="f-company"><span data-i18n="c.company">Company</span><input id="f-company" name="company" autocomplete="organization"></label>
+          <label for="f-type"><span data-i18n="c.type">What do you need?</span>
+            <select id="f-type" name="type">
+              <option value="new" data-i18n="c.o1">A new AI product</option>
+              <option value="existing" data-i18n="c.o2">AI in an existing product</option>
+              <option value="modern" data-i18n="c.o3">Modernising a legacy system</option>
+              <option value="fintech" data-i18n="c.o4">A fintech or trading platform</option>
+              <option value="other" data-i18n="c.o5">Something else</option>
+            </select>
+          </label>
+        </div>
+        <label for="f-msg"><span data-i18n="c.msg">About the project</span><textarea id="f-msg" name="message" required></textarea></label>
+        <p class="error" id="form-error" hidden></p>
+        <button class="btn btn-primary" type="submit" data-i18n="c.submit">Prepare my message</button>
+        <div class="result" id="result" hidden>
+          <p class="note" data-i18n="c.ready">Your message is ready. Copy it and send it to the address shown on the left.</p>
+          <pre id="result-text"></pre>
+          <div class="result-actions">
+            <button class="btn btn-primary btn-sm" type="button" id="copy-msg" data-i18n="c.copymsg">Copy message</button>
+            <a class="btn btn-light btn-sm" id="mailto" href="#contact" data-i18n="c.open">Open in email app</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="year">2026</span> Funny Terrace. <span data-i18n="foot.loc">Porto, Portugal.</span></span>
+    <a href="https://optflow.app" target="_blank" rel="noopener">optflow.app</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var PT = {
+    "nav.services":"Serviços","nav.work":"Trabalho","nav.process":"Processo","nav.founder":"Fundador","nav.contact":"Contacto",
+    "cta.call":"Marcar conversa",
+    "hero.l1":"Produtos com IA,","hero.l2":"feitos para chegar","hero.l3":"à produção.",
+    "hero.sub":"A Funny Terrace é um estúdio de produto e engenharia no Porto. Ajudamos empresas a levar a IA do piloto para software que as pessoas usam todos os dias, com o rigor de uma equipa que já entregou sistemas de trading, clearing e banca.",
+    "hero.cta1":"Marcar conversa de 30 minutos","hero.cta2":"Ver o nosso trabalho",
+    "cred.1v":"24 anos","cred.1l":"a entregar software","cred.2l":"execução de ordens na Euronext Optiq","cred.3v":"6 meses","cred.3l":"do arranque ao MVP",
+    "svc.title":"Quatro formas de trabalharmos consigo",
+    "svc.lede":"Estratégia e engenharia estão na mesma equipa, por isso o que recomendamos é o que conseguimos construir e operar.",
+    "svc.1t":"Estratégia de produto com IA","svc.1p":"Encontramos os casos de uso que dão retorno. Fazemos discovery com os seus utilizadores e dados, dimensionamos a oportunidade e escrevemos um roadmap que a sua equipa consegue executar.",
+    "svc.1a":"Mapa de oportunidades","svc.1b":"Decisões de construir ou comprar","svc.1c":"Roadmaps e métricas de sucesso",
+    "svc.2t":"Engenharia nativa em IA","svc.2p":"Agentes, funcionalidades com LLM e pesquisa semântica integrados no seu produto, com avaliação, guardrails e controlo de custos desde o primeiro sprint.",
+    "svc.2a":"Claude e outras APIs de LLM","svc.2b":"Agentes e uso de ferramentas","svc.2c":"Avaliação e observabilidade",
+    "svc.3t":"Modernização com IA","svc.3p":"Migramos sistemas legados para uma stack moderna sem parar o negócio. Agentes de IA ajudam-nos a ler, testar e migrar código, e cada alteração é aprovada por pessoas.",
+    "svc.3a":"De low-code para stack própria","svc.3b":"Migração de Java e monólitos","svc.3c":"Cobertura de testes automatizada",
+    "svc.4t":"Fintech e mercado de capitais","svc.4p":"Plataformas de trading, clearing e gestão de carteiras, desenhadas desde o início em torno das regras da bolsa e da regulação.","svc.4c":"Opções na B3",
+    "work.title":"Trabalho selecionado","work.lede":"Produtos que desenhámos, construímos e colocámos nas mãos de utilizadores reais.",
+    "w1.k":"OptFlow · SaaS para traders de opções da B3","w1.t":"De um MVP low-code a um SaaS fintech em produção",
+    "w1.p":"Somos responsáveis pelo produto, arquitetura e go-to-market. A stack passou para React e Supabase, com importação de notas de corretagem e reconciliação FIFO, dados de mercado em tempo real, controlo de acessos por perfil e faturação Stripe com cartão, Pix e períodos de teste. Agentes de IA fazem parte do dia a dia da engenharia.",
+    "w1.b":"Visão de produto, motor de cálculo, pagamentos e lançamento, feitos por uma só equipa.",
+    "w2.k":"Derivados · Euronext","w2.t":"Plataforma de lançamento de opções","w2.p":"Uma plataforma empresarial para lançar e gerir opções, com microsserviços ligados ao gateway FIX 5.0 da Optiq, templates de operações sugeridos por IA e apps web e mobile sincronizadas.",
+    "w2.m1":"execução de ordens","w2.m2":"tempo para lançar uma operação","w2.m3":"mais rápido que o sistema legado",
+    "w3.k":"Clearing · Banco de investimento","w3.t":"Clearing legado ligado à cloud","w3.p":"Uma camada de integração em Java, Spring Boot e JMS entre um sistema de clearing de derivados e uma nova plataforma cloud, otimizada para grandes volumes de transações.",
+    "w3.m1":"das funcionalidades do sistema entregues","w3.m2v":"Menor","w3.m2":"tempo de resposta em escala",
+    "w4.k":"Logística · Tempo real","w4.t":"Rastreamento de frota","w4.p":"Rastreamento de camiões em tempo real e relatórios automáticos para um operador logístico, da definição do produto à entrega.",
+    "w4.m1":"roubo de carga","w4.m2":"tempo de geração de relatórios",
+    "pr.title":"Como decorre um projeto","pr.lede":"Cada etapa termina com algo sobre o qual pode decidir. Pode parar depois de qualquer uma e ficar com o que foi construído.",
+    "pr.1t":"Descobrir","pr.1d":"2 semanas","pr.1p":"Entrevistas, análise de dados e uma definição clara do problema. Recebe uma lista priorizada de oportunidades de IA e o valor esperado de cada uma.",
+    "pr.2t":"Provar","pr.2d":"4 a 6 semanas","pr.2p":"Uma prova de conceito funcional com os seus dados reais e resultados de avaliação, para que a decisão de avançar assente em evidência.",
+    "pr.3t":"Construir","pr.3d":"3 a 6 meses","pr.3p":"Engenharia de produção em ciclos curtos: arquitetura, segurança, integrações e uma entrega a cada duas semanas.",
+    "pr.4t":"Operar","pr.4d":"Contínuo","pr.4p":"Monitorização, avaliação de modelos e prompts, controlo de custos e uma passagem de testemunho que a sua equipa consegue assumir.",
+    "f.title":"Liderada por Marcio Gadelha",
+    "f.p1":"O Marcio constrói software desde 2002, como engenheiro, arquiteto de software, tech lead e product manager, para empresas como AB InBev, IBM, Caixa, Multiplan e Natixis.",
+    "f.p2":"Lidera o produto e a engenharia da Funny Terrace e fundou a OptFlow. Foi professor de desenvolvimento de software no SENAC durante cinco anos, e por isso os clientes recebem os trade-offs explicados em linguagem simples.",
+    "f.k1":"Formação","f.v1":"MBA em Arquitetura de Software Distribuído, PUC Minas","f.k2":"Idiomas","f.v2":"Português, inglês, espanhol","f.k3":"Base","f.v3":"Porto, com clientes na Europa e no Brasil",
+    "t.1":"Coordenador de sistemas","t.2":"Tech lead sénior","t.3":"Engenheiro sénior","t.4":"Arquiteto de software","t.5":"Engenheiro sénior","t.6":"Arquiteto, tech lead","t.7":"Technical product manager","t.8":"Fundador",
+    "f.shipped":"Onde a nossa equipa já entregou software",
+    "c.title":"Conte-nos o que quer construir","c.lede":"Bastam algumas linhas sobre o produto, o problema e o prazo. Respondemos em até dois dias úteis.",
+    "c.copy":"Copiar email","c.name":"Nome","c.email":"Email profissional","c.company":"Empresa","c.type":"De que precisa?",
+    "c.o1":"Um novo produto com IA","c.o2":"IA num produto existente","c.o3":"Modernizar um sistema legado","c.o4":"Uma plataforma fintech ou de trading","c.o5":"Outra coisa",
+    "c.msg":"Sobre o projeto","c.submit":"Preparar a minha mensagem","c.ready":"A sua mensagem está pronta. Copie-a e envie para o endereço indicado à esquerda.",
+    "v.hold":"Segure para ver o nosso email","v.hint":"Mantenha premido por um segundo para confirmar que é uma pessoa. Assim a nossa caixa de entrada fica livre de robôs de spam.",
+    "c.copymsg":"Copiar mensagem","c.open":"Abrir na app de email",
+    "foot.loc":"Porto, Portugal."
+  };
+  var MSG = {
+    en:{copied:"Copied",copyFail:"Select the text and copy it",err:"Add your name, a valid email and a few lines about the project.",subj:"Project enquiry",labels:["Name","Email","Company","Need","Project"],
+        needVerify:"First confirm you are a person with the button on the left, so we can show you our email.",checking:"Checking…",early:"Keep holding until the bar fills",failed:"We couldn't confirm that. Reload the page and try again."},
+    pt:{copied:"Copiado",copyFail:"Selecione o texto e copie",err:"Indique o nome, um email válido e algumas linhas sobre o projeto.",subj:"Pedido de projeto",labels:["Nome","Email","Empresa","Necessidade","Projeto"],
+        needVerify:"Confirme primeiro que é uma pessoa no botão à esquerda, para lhe mostrarmos o nosso email.",checking:"A verificar…",early:"Mantenha premido até a barra encher",failed:"Não foi possível confirmar. Recarregue a página e tente de novo."}
+  };
+  var nodes = Array.prototype.slice.call(document.querySelectorAll("[data-i18n]"));
+  var EN = {}; nodes.forEach(function(n){ EN[n.getAttribute("data-i18n")] = n.textContent; });
+  var lang = "en";
+  function setLang(l){
+    lang = l; var dict = l === "pt" ? PT : EN;
+    nodes.forEach(function(n){ var k = n.getAttribute("data-i18n"); if (dict[k] != null) n.textContent = dict[k]; });
+    document.documentElement.lang = l === "pt" ? "pt-PT" : "en";
+    document.querySelectorAll(".lang button").forEach(function(b){ b.setAttribute("aria-pressed", String(b.dataset.lang === l)); });
+    try { localStorage.setItem("ft-lang", l); } catch(e){}
+    if (!document.getElementById("result").hidden) buildMessage();
+  }
+  document.querySelectorAll(".lang button").forEach(function(b){ b.addEventListener("click", function(){ setLang(b.dataset.lang); }); });
+  var saved = null; try { saved = localStorage.getItem("ft-lang"); } catch(e){}
+  var initial = saved || ((navigator.language || "").toLowerCase().indexOf("pt") === 0 ? "pt" : "en");
+  if (initial !== "en") setLang(initial);
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  function copyText(text, btn, fallbackEl){
+    var original = btn.textContent;
+    function done(ok){
+      btn.textContent = ok ? MSG[lang].copied : MSG[lang].copyFail;
+      if (!ok && fallbackEl){ var r = document.createRange(); r.selectNodeContents(fallbackEl); var s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+      setTimeout(function(){ btn.textContent = original; }, 1800);
+    }
+    try { navigator.clipboard.writeText(text).then(function(){ done(true); }, function(){ done(false); }); } catch(e){ done(false); }
+  }
+  var emailEl = document.getElementById("email");
+  document.getElementById("copy-email").addEventListener("click", function(){ copyText(emailEl.textContent, this, emailEl); });
+
+  /* Human check: the address is never in the HTML. It is assembled only after a
+     press-and-hold, a small SHA-256 proof of work, a honeypot and a time-on-page check. */
+  var verified = false, loadedAt = performance.now();
+  var holdBtn = document.getElementById("hold-btn"), holdLabel = document.getElementById("hold-label");
+  var hintEl = document.getElementById("verify-hint"), hintKey = "v.hint";
+  function addr(){
+    var r = function(s){ return s.split("").reverse().join(""); };
+    return r("tcatnoc") + String.fromCharCode(64) + r("ecarretynnuf") + String.fromCharCode(46) + r("moc");
+  }
+  var powPromise = null;
+  function proofOfWork(){
+    if (powPromise) return powPromise;
+    powPromise = (async function(){
+      if (!(window.crypto && crypto.subtle)) return true;
+      var enc = new TextEncoder(), salt = Math.random().toString(36).slice(2) + Date.now();
+      for (var n = 0; n < 300000; n++){
+        var d = new Uint8Array(await crypto.subtle.digest("SHA-256", enc.encode(salt + ":" + n)));
+        if (d[0] === 0 && (d[1] >> 4) === 0) return true;   /* 12 leading zero bits */
+      }
+      return false;
+    })();
+    return powPromise;
+  }
+  function reveal(){
+    var a = addr();
+    verified = true;
+    emailEl.textContent = a;
+    document.getElementById("mail").hidden = false;
+    document.getElementById("verify").hidden = true;
+    if (!document.getElementById("result").hidden) buildMessage();
+  }
+  var HOLD_MS = 1100, holdStart = 0, holdRaf = null, holding = false;
+  function setHint(text){ hintEl.textContent = text; }
+  function tick(now){
+    if (!holding) return;
+    var p = Math.min(1, (now - holdStart) / HOLD_MS);
+    holdBtn.style.setProperty("--p", p.toFixed(3));
+    if (p < 1){ holdRaf = requestAnimationFrame(tick); return; }
+    holding = false; holdBtn.classList.add("done"); holdBtn.disabled = true;
+    holdLabel.textContent = MSG[lang].checking;
+    proofOfWork().then(function(ok){
+      var honey = document.getElementById("f-website").value;
+      if (ok && !honey && performance.now() - loadedAt > 1500) reveal();
+      else { holdBtn.disabled = false; holdBtn.classList.remove("done","active"); holdBtn.style.setProperty("--p", 0); holdLabel.textContent = (lang === "pt" ? PT : EN)["v.hold"]; setHint(MSG[lang].failed); }
+    });
+  }
+  function startHold(e){
+    if (holding || holdBtn.disabled) return;
+    if (e && e.type === "pointerdown"){ e.preventDefault(); try { holdBtn.setPointerCapture(e.pointerId); } catch(err){} }
+    holding = true; holdStart = performance.now(); holdBtn.classList.add("active");
+    proofOfWork();
+    holdRaf = requestAnimationFrame(tick);
+  }
+  function endHold(){
+    if (!holding) return;
+    holding = false; cancelAnimationFrame(holdRaf);
+    holdBtn.classList.remove("active"); holdBtn.style.setProperty("--p", 0);
+    setHint(MSG[lang].early);
+  }
+  holdBtn.addEventListener("pointerdown", startHold);
+  ["pointerup","pointercancel","pointerleave"].forEach(function(ev){ holdBtn.addEventListener(ev, endHold); });
+  holdBtn.addEventListener("keydown", function(e){ if ((e.key === " " || e.key === "Enter") && !e.repeat){ e.preventDefault(); startHold(e); } });
+  holdBtn.addEventListener("keyup", function(e){ if (e.key === " " || e.key === "Enter") endHold(); });
+  holdBtn.addEventListener("click", function(e){ e.preventDefault(); });
+  holdBtn.addEventListener("contextmenu", function(e){ e.preventDefault(); });
+  try { sessionStorage.removeItem("ft-human"); } catch(e){}  /* clear the old shortcut flag from earlier versions */
+
+  var form = document.getElementById("contact-form"), result = document.getElementById("result"), resultText = document.getElementById("result-text"), errEl = document.getElementById("form-error");
+  function buildMessage(){
+    var L = MSG[lang].labels, sel = document.getElementById("f-type");
+    var body = L[0]+": "+form.name.value.trim()+"\n"+L[1]+": "+form.email.value.trim()+"\n"+L[2]+": "+(form.company.value.trim() || "-")+"\n"+L[3]+": "+sel.options[sel.selectedIndex].text+"\n\n"+L[4]+":\n"+form.message.value.trim();
+    resultText.textContent = body;
+    if (verified) document.getElementById("mailto").href = "mailto:"+addr()+"?subject="+encodeURIComponent(MSG[lang].subj+" - "+(form.company.value.trim() || form.name.value.trim()))+"&body="+encodeURIComponent(body);
+  }
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    var ok = form.name.value.trim() && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.value.trim()) && form.message.value.trim();
+    if (!ok){ errEl.textContent = MSG[lang].err; errEl.hidden = false; result.hidden = true; return; }
+    if (!verified){ errEl.textContent = MSG[lang].needVerify; errEl.hidden = false; result.hidden = true; holdBtn.focus(); return; }
+    errEl.hidden = true; buildMessage(); result.hidden = false; result.scrollIntoView({block:"nearest"});
+  });
+  document.getElementById("copy-msg").addEventListener("click", function(){ copyText(resultText.textContent, this, resultText); });
+
+  /* Hero: a latent-space sphere built from latitude rings. Each ring is a layer that
+     turns against its neighbours; amber pulses run along the layers and hop between them. */
+  var canvas = document.getElementById("terrace"), ctx = canvas.getContext("2d");
+  var reduce = matchMedia("(prefers-reduced-motion: reduce)");
+  var SIG = [106,134,255], AMB = [255,181,71];
+  var w = 0, h = 0, raf = null, visible = true, start = performance.now(), last = start, spin = 0, orbit = 0;
+  var pointer = {x:0, y:0}, cam = {yaw:0, pitch:0.38};
+  var seed = 928; function rnd(){ seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }
+  function col(c, a){ return "rgba(" + c[0] + "," + c[1] + "," + c[2] + "," + a.toFixed(3) + ")"; }
+  var rings = [], L = 28;
+  for (var i = 0; i < L; i++){
+    var lat = -1.34 + i * (2.68 / (L - 1)), n = Math.max(12, Math.round(Math.cos(lat) * 150));
+    var sc = new Float32Array(n); for (var j = 0; j < n; j++) sc[j] = rnd();
+    rings.push({y:Math.sin(lat), r:Math.cos(lat), n:n, rot:rnd() * 6.283, speed:(0.5 + rnd() * 0.9) * (i % 2 ? 1 : -1) * 0.00012, scatter:sc});
+  }
+  var pulses = [];
+  for (i = 0; i < 26; i++) pulses.push({ring:Math.floor(rnd() * L), ang:rnd() * 6.283, dir:rnd() < 0.5 ? -1 : 1, spd:0.0005 + rnd() * 0.0011});
+  var buckets = []; for (i = 0; i < 8; i++) buckets.push([]);
+  var cy_, cp_, sy_, sp_, cx, cyy, S, D = 3.4;
+  function proj(x, y, z, out){
+    var x1 = x * cy_ + z * sy_, z1 = -x * sy_ + z * cy_;
+    var y2 = y * cp_ - z1 * sp_, z2 = y * sp_ + z1 * cp_;
+    var p = D / (D - z2);
+    out[0] = cx + x1 * S * p; out[1] = cyy - y2 * S * p; out[2] = z2; out[3] = p;
+  }
+  var P = [0,0,0,0];
+  function resize(){
+    var r = canvas.getBoundingClientRect(), dpr = Math.min(window.devicePixelRatio || 1, 2);
+    w = r.width; h = r.height; canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0); frame(performance.now(), true);
+  }
+  function frame(now, still){
+    var dt = Math.min(50, now - last); last = now;
+    var moving = !still && !reduce.matches;
+    var narrow = w < 760, dim = narrow ? 0.6 : 1;
+    if (moving){
+      spin += dt * 0.00007; orbit += dt * 0.00025;
+      cam.yaw += (pointer.x * 0.7 - cam.yaw) * 0.04;
+      cam.pitch += (0.38 + pointer.y * 0.35 - cam.pitch) * 0.04;
+      rings.forEach(function(rg){ rg.rot += rg.speed * dt; });
+    }
+    var t = reduce.matches ? 1 : Math.min(1, (now - start) / 1900), e = 1 - Math.pow(1 - t, 3);
+    cx = narrow ? w * 0.5 : w * 0.71; cyy = narrow ? h * 0.8 : h * 0.5;
+    S = narrow ? w * 0.6 : Math.min(h * 0.44, w * 0.29);
+    var yaw = spin + cam.yaw; cy_ = Math.cos(yaw); sy_ = Math.sin(yaw); cp_ = Math.cos(cam.pitch); sp_ = Math.sin(cam.pitch);
+
+    ctx.clearRect(0, 0, w, h);
+    ctx.globalCompositeOperation = "lighter";
+    var core = ctx.createRadialGradient(cx, cyy, 0, cx, cyy, S * 1.25);
+    core.addColorStop(0, col(SIG, 0.16 * dim)); core.addColorStop(1, col(SIG, 0));
+    ctx.fillStyle = core; ctx.beginPath(); ctx.arc(cx, cyy, S * 1.25, 0, 6.283); ctx.fill();
+
+    /* Orbit halo */
+    ctx.beginPath();
+    for (var a = 0; a <= 120; a++){
+      var an = a / 120 * 6.283; proj(Math.cos(an) * 1.42, 0.05, Math.sin(an) * 1.42, P);
+      if (a === 0) ctx.moveTo(P[0], P[1]); else ctx.lineTo(P[0], P[1]);
+    }
+    ctx.strokeStyle = col(SIG, 0.22 * e * dim); ctx.lineWidth = 1; ctx.stroke();
+    proj(Math.cos(orbit) * 1.42, 0.05, Math.sin(orbit) * 1.42, P);
+    ctx.fillStyle = col(AMB, 0.9 * e * dim); ctx.beginPath(); ctx.arc(P[0], P[1], 2.4 * P[3], 0, 6.283); ctx.fill();
+
+    /* Points, bucketed by depth so each alpha level is one fill */
+    for (i = 0; i < 8; i++) buckets[i].length = 0;
+    rings.forEach(function(rg){
+      for (var j = 0; j < rg.n; j++){
+        var an = j / rg.n * 6.283 + rg.rot, k = 1 + (1 - e) * (0.4 + rg.scatter[j] * 3.2);
+        proj(Math.cos(an) * rg.r * k, rg.y * k, Math.sin(an) * rg.r * k, P);
+        var front = (P[2] + 1.4) / 2.8; if (front < 0) front = 0; if (front > 1) front = 1;
+        var b = Math.min(7, Math.floor(front * 8));
+        buckets[b].push(P[0], P[1], (0.6 + front * 1.3) * P[3]);
+      }
+    });
+    for (i = 0; i < 8; i++){
+      var arr = buckets[i]; if (!arr.length) continue;
+      var fr = (i + 0.5) / 8;
+      ctx.fillStyle = col(SIG, (0.1 + 0.62 * Math.pow(fr, 1.5)) * dim);
+      for (var q = 0; q < arr.length; q += 3){ var s = arr[q + 2]; ctx.fillRect(arr[q] - s / 2, arr[q + 1] - s / 2, s, s); }
+    }
+
+    /* Pulses */
+    if (e > 0.85){
+      var pa = (e - 0.85) / 0.15;
+      pulses.forEach(function(p){
+        if (moving){
+          p.ang += p.dir * p.spd * dt;
+          if (rnd() < dt / 2600) p.ring = Math.max(0, Math.min(L - 1, p.ring + (rnd() < 0.5 ? -1 : 1)));
+        }
+        var rg = rings[p.ring];
+        for (var s = 12; s >= 0; s--){
+          var an = p.ang - p.dir * s * 0.03;
+          proj(Math.cos(an) * rg.r, rg.y, Math.sin(an) * rg.r, P);
+          var front = Math.max(0, Math.min(1, (P[2] + 1.4) / 2.8));
+          var alpha = Math.pow(1 - s / 13, 2) * (0.25 + 0.75 * front) * pa * dim;
+          if (s === 0){
+            var g = ctx.createRadialGradient(P[0], P[1], 0, P[0], P[1], 12 * P[3]);
+            g.addColorStop(0, col(AMB, 0.55 * alpha)); g.addColorStop(1, col(AMB, 0));
+            ctx.fillStyle = g; ctx.beginPath(); ctx.arc(P[0], P[1], 12 * P[3], 0, 6.283); ctx.fill();
+          }
+          ctx.fillStyle = col(AMB, alpha);
+          var sz = (s === 0 ? 3 : 1.8) * P[3]; ctx.fillRect(P[0] - sz / 2, P[1] - sz / 2, sz, sz);
+        }
+      });
+    }
+    ctx.globalCompositeOperation = "source-over";
+  }
+  function loop(now){ frame(now, false); raf = (visible && !reduce.matches) ? requestAnimationFrame(loop) : null; }
+  function kick(){ last = performance.now(); if (!raf && visible && !reduce.matches) raf = requestAnimationFrame(loop); }
+  resize();
+  addEventListener("pointermove", function(e){ pointer.x = e.clientX / innerWidth - 0.5; pointer.y = e.clientY / innerHeight - 0.5; }, {passive:true});
+  if ("ResizeObserver" in window) new ResizeObserver(resize).observe(canvas); else addEventListener("resize", resize);
+  if ("IntersectionObserver" in window) new IntersectionObserver(function(es){ visible = es[0].isIntersecting && !document.hidden; kick(); }).observe(canvas);
+  document.addEventListener("visibilitychange", function(){ visible = !document.hidden; kick(); });
+  reduce.addEventListener("change", function(){ frame(performance.now(), true); kick(); });
+  kick();
+})();
+</script>
+
+</body>
+</html>
