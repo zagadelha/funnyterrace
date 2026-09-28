@@ -17,6 +17,7 @@ A single static page with no build step and no runtime dependencies besides Goog
 - Bilingual (English and European Portuguese), auto-detected from the browser, switchable in the header
 - Animated hero: a latent-space particle sphere on canvas, with pointer parallax; static when the visitor prefers reduced motion
 - The contact email is not in the source. It is assembled only after a press-and-hold check, a small SHA-256 proof of work, a honeypot field and a minimum time on page
+- The contact form sends through [Web3Forms](https://web3forms.com) to the company inbox (the access key is public by design and only delivers to that inbox), with a honeypot, a minimum time on page and a small proof of work before each send
 - Responsive down to 360px, keyboard accessible, SEO metadata and Organization structured data
 
 ## Run locally
@@ -34,5 +35,5 @@ All copy lives in `index.html`. English text is in the markup; Portuguese text i
 ## To do before launch
 
 - Add `og-image.png` (1200×630) at the site root for social previews
-- Connect the contact form to a backend (Formspree, a Supabase Edge Function) and add Cloudflare Turnstile
+- In the Web3Forms dashboard, restrict the access key to the funnyterrace.com domain
 - Confirm which case studies can be named publicly

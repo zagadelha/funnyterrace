@@ -180,6 +180,7 @@ textarea{min-height:130px;resize:vertical}
 input:focus,select:focus,textarea:focus{outline:2px solid var(--signal);outline-offset:1px;border-color:transparent}
 .contact-band .btn-primary{justify-self:start}
 .result{border:1px solid var(--line-2);background:var(--surface);border-radius:12px;padding:18px;display:grid;gap:12px}
+.sent-title{font-family:var(--display);font-weight:500;font-size:1.1rem;color:var(--accent);margin:0}
 .result pre{margin:0;white-space:pre-wrap;font-family:var(--text);font-size:0.9375rem;color:var(--ink)}
 .result-actions{display:flex;flex-wrap:wrap;gap:10px}
 .note{font-size:0.8125rem}
@@ -416,14 +417,11 @@ footer a{color:var(--muted)}
         </div>
         <label for="f-msg"><span data-i18n="c.msg">About the project</span><textarea id="f-msg" name="message" required></textarea></label>
         <p class="error" id="form-error" hidden></p>
-        <button class="btn btn-primary" type="submit" data-i18n="c.submit">Prepare my message</button>
-        <div class="result" id="result" hidden>
-          <p class="note" data-i18n="c.ready">Your message is ready. Copy it and send it to the address shown on the left.</p>
-          <pre id="result-text"></pre>
-          <div class="result-actions">
-            <button class="btn btn-primary btn-sm" type="button" id="copy-msg" data-i18n="c.copymsg">Copy message</button>
-            <a class="btn btn-light btn-sm" id="mailto" href="#contact" data-i18n="c.open">Open in email app</a>
-          </div>
+        <input class="hp" type="checkbox" name="botcheck" id="f-botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button class="btn btn-primary" type="submit" id="f-submit" data-i18n="c.submit">Send message</button>
+        <div class="result" id="result" role="status" aria-live="polite" hidden>
+          <p class="sent-title" data-i18n="c.sent">Message sent</p>
+          <p class="note" data-i18n="c.sentp">Thank you. We reply within two business days, from our company address.</p>
         </div>
       </form>
     </div>
@@ -479,16 +477,16 @@ footer a{color:var(--muted)}
     "c.title":"Conte-nos o que quer construir","c.lede":"Bastam algumas linhas sobre o produto, o problema e o prazo. Respondemos em até dois dias úteis.",
     "c.copy":"Copiar email","c.name":"Nome","c.email":"Email profissional","c.company":"Empresa","c.type":"De que precisa?",
     "c.o1":"Um novo produto com IA","c.o2":"IA num produto existente","c.o3":"Modernizar um sistema legado","c.o4":"Uma plataforma fintech ou de trading","c.o5":"Outra coisa",
-    "c.msg":"Sobre o projeto","c.submit":"Preparar a minha mensagem","c.ready":"A sua mensagem está pronta. Copie-a e envie para o endereço indicado à esquerda.",
+    "c.msg":"Sobre o projeto","c.submit":"Enviar mensagem","c.sent":"Mensagem enviada","c.sentp":"Obrigado. Respondemos em até dois dias úteis, a partir do nosso endereço da empresa.",
     "v.hold":"Segure para ver o nosso email","v.hint":"Mantenha premido por um segundo para confirmar que é uma pessoa. Assim a nossa caixa de entrada fica livre de robôs de spam.",
     "c.copymsg":"Copiar mensagem","c.open":"Abrir na app de email",
     "foot.loc":"Porto, Portugal."
   };
   var MSG = {
     en:{copied:"Copied",copyFail:"Select the text and copy it",err:"Add your name, a valid email and a few lines about the project.",subj:"Project enquiry",labels:["Name","Email","Company","Need","Project"],
-        needVerify:"First confirm you are a person with the button on the left, so we can show you our email.",checking:"Checking…",early:"Keep holding until the bar fills",failed:"We couldn't confirm that. Reload the page and try again."},
+        sending:"Sending…",sendFail:"The message didn't go through. Check your connection and try again, or use the email address on the left.",checking:"Checking…",early:"Keep holding until the bar fills",failed:"We couldn't confirm that. Reload the page and try again."},
     pt:{copied:"Copiado",copyFail:"Selecione o texto e copie",err:"Indique o nome, um email válido e algumas linhas sobre o projeto.",subj:"Pedido de projeto",labels:["Nome","Email","Empresa","Necessidade","Projeto"],
-        needVerify:"Confirme primeiro que é uma pessoa no botão à esquerda, para lhe mostrarmos o nosso email.",checking:"A verificar…",early:"Mantenha premido até a barra encher",failed:"Não foi possível confirmar. Recarregue a página e tente de novo."}
+        sending:"A enviar…",sendFail:"A mensagem não foi enviada. Verifique a ligação e tente de novo, ou use o endereço de email à esquerda.",checking:"A verificar…",early:"Mantenha premido até a barra encher",failed:"Não foi possível confirmar. Recarregue a página e tente de novo."}
   };
   var nodes = Array.prototype.slice.call(document.querySelectorAll("[data-i18n]"));
   var EN = {}; nodes.forEach(function(n){ EN[n.getAttribute("data-i18n")] = n.textContent; });
@@ -499,7 +497,6 @@ footer a{color:var(--muted)}
     document.documentElement.lang = l === "pt" ? "pt-PT" : "en";
     document.querySelectorAll(".lang button").forEach(function(b){ b.setAttribute("aria-pressed", String(b.dataset.lang === l)); });
     try { localStorage.setItem("ft-lang", l); } catch(e){}
-    if (!document.getElementById("result").hidden) buildMessage();
   }
   document.querySelectorAll(".lang button").forEach(function(b){ b.addEventListener("click", function(){ setLang(b.dataset.lang); }); });
   var saved = null; try { saved = localStorage.getItem("ft-lang"); } catch(e){}
@@ -549,7 +546,6 @@ footer a{color:var(--muted)}
     emailEl.textContent = a;
     document.getElementById("mail").hidden = false;
     document.getElementById("verify").hidden = true;
-    if (!document.getElementById("result").hidden) buildMessage();
   }
   var HOLD_MS = 1100, holdStart = 0, holdRaf = null, holding = false;
   function setHint(text){ hintEl.textContent = text; }
@@ -587,21 +583,40 @@ footer a{color:var(--muted)}
   holdBtn.addEventListener("contextmenu", function(e){ e.preventDefault(); });
   try { sessionStorage.removeItem("ft-human"); } catch(e){}  /* clear the old shortcut flag from earlier versions */
 
-  var form = document.getElementById("contact-form"), result = document.getElementById("result"), resultText = document.getElementById("result-text"), errEl = document.getElementById("form-error");
-  function buildMessage(){
-    var L = MSG[lang].labels, sel = document.getElementById("f-type");
-    var body = L[0]+": "+form.name.value.trim()+"\n"+L[1]+": "+form.email.value.trim()+"\n"+L[2]+": "+(form.company.value.trim() || "-")+"\n"+L[3]+": "+sel.options[sel.selectedIndex].text+"\n\n"+L[4]+":\n"+form.message.value.trim();
-    resultText.textContent = body;
-    if (verified) document.getElementById("mailto").href = "mailto:"+addr()+"?subject="+encodeURIComponent(MSG[lang].subj+" - "+(form.company.value.trim() || form.name.value.trim()))+"&body="+encodeURIComponent(body);
-  }
+  /* Contact form: sent through Web3Forms to the company inbox. Bot friction: honeypot,
+     minimum time on page and a small proof of work before each send. */
+  var WEB3FORMS_KEY = "85e4ad04-9c76-4652-ad83-db601fd116ad";
+  var form = document.getElementById("contact-form"), result = document.getElementById("result"), errEl = document.getElementById("form-error"), submitBtn = document.getElementById("f-submit");
+  var sending = false;
   form.addEventListener("submit", function(e){
     e.preventDefault();
-    var ok = form.name.value.trim() && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.value.trim()) && form.message.value.trim();
-    if (!ok){ errEl.textContent = MSG[lang].err; errEl.hidden = false; result.hidden = true; return; }
-    if (!verified){ errEl.textContent = MSG[lang].needVerify; errEl.hidden = false; result.hidden = true; holdBtn.focus(); return; }
-    errEl.hidden = true; buildMessage(); result.hidden = false; result.scrollIntoView({block:"nearest"});
+    if (sending) return;
+    var name = form.name.value.trim(), email = form.email.value.trim(), company = form.company.value.trim(), msg = form.message.value.trim();
+    var sel = document.getElementById("f-type"), need = sel.options[sel.selectedIndex].text;
+    if (!name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || !msg){ errEl.textContent = MSG[lang].err; errEl.hidden = false; result.hidden = true; return; }
+    errEl.hidden = true;
+    var label = submitBtn.textContent;
+    function done(){ sending = false; submitBtn.disabled = false; submitBtn.textContent = label; }
+    function success(){ form.reset(); result.hidden = false; result.scrollIntoView({block:"nearest"}); done(); }
+    /* Bots that fill hidden fields or submit instantly get a quiet success and nothing is sent */
+    if (document.getElementById("f-botcheck").checked || document.getElementById("f-website").value || performance.now() - loadedAt < 3000){ success(); return; }
+    sending = true; submitBtn.disabled = true; submitBtn.textContent = MSG[lang].sending;
+    powPromise = null;
+    proofOfWork().then(function(){
+      return fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {"Content-Type": "application/json", "Accept": "application/json"},
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject: MSG[lang].subj + " - " + (company || name) + " (funnyterrace.com)",
+          from_name: "funnyterrace.com",
+          name: name, email: email, company: company || "-", need: need, message: msg, language: lang
+        })
+      });
+    }).then(function(r){ return r.json().catch(function(){ return {success:false}; }); })
+      .then(function(data){ if (data && data.success) success(); else throw new Error("failed"); })
+      .catch(function(){ errEl.textContent = MSG[lang].sendFail; errEl.hidden = false; done(); });
   });
-  document.getElementById("copy-msg").addEventListener("click", function(){ copyText(resultText.textContent, this, resultText); });
 
   /* Hero: a latent-space sphere built from latitude rings. Each ring is a layer that
      turns against its neighbours; amber pulses run along the layers and hop between them. */
