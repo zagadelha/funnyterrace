@@ -180,6 +180,7 @@ textarea{min-height:130px;resize:vertical}
 input:focus,select:focus,textarea:focus{outline:2px solid var(--signal);outline-offset:1px;border-color:transparent}
 .contact-band .btn-primary{justify-self:start}
 .result{border:1px solid var(--line-2);background:var(--surface);border-radius:12px;padding:18px;display:grid;gap:12px}
+.captcha{min-height:78px;max-width:100%;overflow-x:auto}
 .sent-title{font-family:var(--display);font-weight:500;font-size:1.1rem;color:var(--accent);margin:0}
 .result pre{margin:0;white-space:pre-wrap;font-family:var(--text);font-size:0.9375rem;color:var(--ink)}
 .result-actions{display:flex;flex-wrap:wrap;gap:10px}
@@ -418,6 +419,7 @@ footer a{color:var(--muted)}
         <label for="f-msg"><span data-i18n="c.msg">About the project</span><textarea id="f-msg" name="message" required></textarea></label>
         <p class="error" id="form-error" hidden></p>
         <input class="hp" type="checkbox" name="botcheck" id="f-botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="captcha"><div class="h-captcha" data-captcha="true" data-theme="dark"></div></div>
         <button class="btn btn-primary" type="submit" id="f-submit" data-i18n="c.submit">Send message</button>
         <div class="result" id="result" role="status" aria-live="polite" hidden>
           <p class="sent-title" data-i18n="c.sent">Message sent</p>
@@ -484,9 +486,9 @@ footer a{color:var(--muted)}
   };
   var MSG = {
     en:{copied:"Copied",copyFail:"Select the text and copy it",err:"Add your name, a valid email and a few lines about the project.",subj:"Project enquiry",labels:["Name","Email","Company","Need","Project"],
-        sending:"Sending…",sendFail:"The message didn't go through. Check your connection and try again, or use the email address on the left.",checking:"Checking…",early:"Keep holding until the bar fills",failed:"We couldn't confirm that. Reload the page and try again."},
+        captcha:"Complete the verification above the Send button.",sending:"Sending…",sendFail:"The message didn't go through. Check your connection and try again, or use the email address on the left.",checking:"Checking…",early:"Keep holding until the bar fills",failed:"We couldn't confirm that. Reload the page and try again."},
     pt:{copied:"Copiado",copyFail:"Selecione o texto e copie",err:"Indique o nome, um email válido e algumas linhas sobre o projeto.",subj:"Pedido de projeto",labels:["Nome","Email","Empresa","Necessidade","Projeto"],
-        sending:"A enviar…",sendFail:"A mensagem não foi enviada. Verifique a ligação e tente de novo, ou use o endereço de email à esquerda.",checking:"A verificar…",early:"Mantenha premido até a barra encher",failed:"Não foi possível confirmar. Recarregue a página e tente de novo."}
+        captcha:"Complete a verificação acima do botão Enviar.",sending:"A enviar…",sendFail:"A mensagem não foi enviada. Verifique a ligação e tente de novo, ou use o endereço de email à esquerda.",checking:"A verificar…",early:"Mantenha premido até a barra encher",failed:"Não foi possível confirmar. Recarregue a página e tente de novo."}
   };
   var nodes = Array.prototype.slice.call(document.querySelectorAll("[data-i18n]"));
   var EN = {}; nodes.forEach(function(n){ EN[n.getAttribute("data-i18n")] = n.textContent; });
@@ -594,9 +596,11 @@ footer a{color:var(--muted)}
     var name = form.name.value.trim(), email = form.email.value.trim(), company = form.company.value.trim(), msg = form.message.value.trim();
     var sel = document.getElementById("f-type"), need = sel.options[sel.selectedIndex].text;
     if (!name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || !msg){ errEl.textContent = MSG[lang].err; errEl.hidden = false; result.hidden = true; return; }
+    var capEl = form.querySelector("textarea[name=h-captcha-response]"), captchaToken = capEl ? capEl.value : "";
+    if (!captchaToken){ errEl.textContent = MSG[lang].captcha; errEl.hidden = false; result.hidden = true; return; }
     errEl.hidden = true;
     var label = submitBtn.textContent;
-    function done(){ sending = false; submitBtn.disabled = false; submitBtn.textContent = label; }
+    function done(){ sending = false; submitBtn.disabled = false; submitBtn.textContent = label; try { if (window.hcaptcha) window.hcaptcha.reset(); } catch(err){} }
     function success(){ form.reset(); result.hidden = false; result.scrollIntoView({block:"nearest"}); done(); }
     /* Bots that fill hidden fields or submit instantly get a quiet success and nothing is sent */
     if (document.getElementById("f-botcheck").checked || document.getElementById("f-website").value || performance.now() - loadedAt < 3000){ success(); return; }
@@ -610,7 +614,8 @@ footer a{color:var(--muted)}
           access_key: WEB3FORMS_KEY,
           subject: MSG[lang].subj + " - " + (company || name) + " (funnyterrace.com)",
           from_name: "funnyterrace.com",
-          name: name, email: email, company: company || "-", need: need, message: msg, language: lang
+          name: name, email: email, company: company || "-", need: need, message: msg, language: lang,
+          "h-captcha-response": captchaToken
         })
       });
     }).then(function(r){ return r.json().catch(function(){ return {success:false}; }); })
@@ -736,5 +741,6 @@ footer a{color:var(--muted)}
 })();
 </script>
 
+<script src="https://web3forms.com/client/script.js" async defer></script>
 </body>
 </html>
